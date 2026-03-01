@@ -1,5 +1,6 @@
-import Categories from "@/components/Categories";
+import Categories from "@/components/mainPage/Categories";
 import Hero from "@/components/mainPage/Hero";
+import Trending from "@/components/mainPage/Trending";
 
 export default function Home() {
   return (
@@ -7,6 +8,7 @@ export default function Home() {
       <main >
         <Hero />
         <Categories />
+        <Trending />
       </main>
     </div>
   );

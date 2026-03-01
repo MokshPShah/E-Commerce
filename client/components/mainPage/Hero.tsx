@@ -56,22 +56,26 @@ export default function Hero() {
 
                             {/* Action Btn */}
                             <div className="mt-9 md:mt-4 flex flex-wrap gap-4">
-                                <Link href={'/shop'} className="bg-[#ec1313] hover:bg-[#c40f0f] text-white font-bold py-2 px-5 md:py-3 md:px-8 rounded-md transition-all duration-300">Shop Now</Link>
+                                <Link href={'/shop'} className="btn-primary">Shop Now</Link>
                                 <Link href={'/sale'} className="bg-white/10 hover:bg-white/20 text-white font-bold py-2 px-5 md:py-3 md:px-8 rounded-md transition-all duration-300">View Bundles</Link>
                             </div>
                         </div>
                     </section>
-                    <div className="absolute -bottom-13 left-[9%] md:left-[10%] lg:left-[21.5%] shadow-lg inset-shadow-black">
-                        <form onSubmit={handleSearch} className="bg-white py-3 px-4 rounded-md w-85 md:w-160 lg:min-w-225 flex items-center">
-                            <CiSearch size={35} className="me-4" />
-                            <input type="text"
+                    <div className="absolute -bottom-8 md:-bottom-10 left-1/2 -translate-x-1/2 w-[90%] md:w-[80%] max-w-3xl shadow-xl z-20">
+                        <form onSubmit={handleSearch} className="bg-white py-2 px-3 md:py-3 md:px-4 rounded-lg w-full flex items-center">
+                            <CiSearch size={30} className="me-2 md:me-4 text-gray-500" />
+                            <input 
+                                type="text"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="border-0 outline-0 focus:border-0 focus:outline-0 w-full text-sm md:text-xl"
-                                placeholder="Search Products..." />
+                                className="border-0 outline-0 focus:border-0 focus:outline-0 w-full text-base md:text-xl text-black"
+                                placeholder="Search Products..." 
+                            />
                             <button
                                 type="submit"
-                                className="text-white bg-slate-950 hover:bg-slate-900 py-2 px-4 md:py-3 md:px-8 transition-all duration-300 cursor-pointer rounded-lg">Search</button>
+                                className="text-white bg-slate-950 hover:bg-slate-900 py-2 px-5 md:py-3 md:px-8 transition-all duration-300 cursor-pointer rounded-md font-medium shrink-0">
+                                Search
+                            </button>
                         </form>
                     </div>
                 </div>

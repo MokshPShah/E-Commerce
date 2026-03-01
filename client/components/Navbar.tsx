@@ -21,8 +21,8 @@ export default function Navbar() {
         <div className="relative z-50 bg-white shadow-md">
             <div className="px-4 md:px-9 py-3 flex justify-between items-center inset-shadow-black">
 
-                <Link href={'/'} className="flex justify-center items-center gap-2 z-50">
-                    <Image src={'/logo.png'} alt="Logo" width={45} height={45} className="rounded-full" />
+                <Link href={'/'} className="flex justify-center items-center gap-2">
+                    <Image src={'/logo.png'} alt="Logo" width={45} height={45} className="rounded-full" loading="lazy" />
                     <h1 className="text-xl md:text-2xl font-bold tracking-wide" style={{ fontFamily: "'Bpmf Iansui', sans-serif" }}>Strenoxa</h1>
                 </Link>
 
@@ -36,7 +36,7 @@ export default function Navbar() {
 
                     <div className="w-px h-6 bg-gray-300 mx-2"></div> {/* Divider Line */}
 
-                    <Link href={'/login'} className="bg-[#ec1313] hover:bg-[#c40f0f] text-white flex items-center font-medium gap-2 p-2 px-4 rounded-md transition-all duration-300 shadow-sm"><RiAccountCircle2Line size={20} /> Sign In</Link>
+                    <Link href={'/login'} className="btn-primary btn-primary flex justify-center items-center font-bold gap-2 text-lg px-3 py-2"><RiAccountCircle2Line size={20} /> Sign In</Link>
                     <Link href={'/cart'}>
                         <div className="bg-slate-100 p-2 rounded-md hover:bg-slate-200 transition-all duration-300">
                             <IoIosCart size={24} className="text-gray-800" />
@@ -85,7 +85,7 @@ export default function Navbar() {
 
                 {/* Drawer Footer (Sign In / Up) */}
                 <div className="p-6 border-t border-gray-100 bg-gray-50 flex flex-col gap-3">
-                    <Link href={'/login'} onClick={() => setIsOpen(!isOpen)} className="bg-[#ec1313] text-white flex justify-center items-center font-bold gap-2 py-3 rounded-md shadow-md text-lg"><RiAccountCircle2Line size={24} /> Sign In</Link>
+                    <Link href={'/login'} onClick={() => setIsOpen(!isOpen)} className="btn-primary flex justify-center items-center font-bold gap-2 text-lg"><RiAccountCircle2Line size={24} /> Sign In</Link>
                     <Link href={'/signup'} onClick={() => setIsOpen(!isOpen)} className="bg-white border-2 border-gray-200 text-gray-800 flex justify-center items-center font-bold py-3 rounded-md text-lg">Create Account</Link>
                 </div>
             </div>
