@@ -11,7 +11,7 @@ const trendingProducts = [
 export default function Trending() {
     return (
         <>
-            <div className="base-section py-0">
+            <div className="base-section pt-0">
                 <div>
                     <h2 className="section-head">
                         Trending Now
@@ -19,7 +19,7 @@ export default function Trending() {
                     <p className="text-slate-600 font-medium my-2">Best-selling products loved by our community</p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-6 justify-between items-center">
                     {
                         trendingProducts.map((item, index) => (
                             <ProductCard
@@ -34,6 +34,15 @@ export default function Trending() {
                             />
                         ))
                     }
+
+                </div>
+                <div className="w-full flex justify-center mt-12 md:mt-16">
+                    <Link
+                        href={'/shop'}
+                        className="btn-primary bg-transparent border-2 border-[#ec1313] text-[#ec1313] hover:bg-[#ec1313] hover:text-white shadow-none hover:shadow-lg hover:shadow-red-500/20 px-10 transition-all duration-300"
+                    >
+                        View All Products
+                    </Link>
                 </div>
             </div>
         </>

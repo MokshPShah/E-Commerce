@@ -1,8 +1,10 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { FaStar } from "react-icons/fa";
-import { IoIosCart } from "react-icons/io";
+import { IoIosCart, IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 
 interface ProductProps {
     image: string,
@@ -15,12 +17,29 @@ interface ProductProps {
 }
 
 export default function ({ image, ratings, productName, productDesc, price, badge, badgeColor }: ProductProps) {
+
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    const handleFavorite = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setIsFavorite(!isFavorite)
+    }
     return (
         <Link href={'/shop'} className="style-card group items-start text-left p-4 gap-2 w-full">
             <div className="w-full bg-gray-50 rounded-xl aspect-square flex items-center justify-center overflow-hidden mb-2 relative group-hover:bg-gray-100 transition-colors duration-300">
                 {badge && (
                     <span className={`absolute top-3 left-3 ${badgeColor} text-white text-[10px] font-bold px-2 py-1 rounded tracking-wider z-10`}>{badge}</span>
                 )}
+                <button
+                    onClick={handleFavorite}
+                    className={`absolute bottom-3 right-3 z-20 bg-white p-2 rounded-full shadow-sm transition-all duration-300 
+                        ${isFavorite
+                            ? 'opacity-100 text-[#ec1313]'
+                            : 'opacity-0 group-hover:opacity-100 text-gray-400 hover:text-[#ec1313] hover:shadow-md'
+                        }`}
+                >
+                    {isFavorite ? <IoMdHeart size={18} /> : <IoMdHeartEmpty size={18} />}
+                </button>
                 <Image
                     src={image}
                     alt={productName}

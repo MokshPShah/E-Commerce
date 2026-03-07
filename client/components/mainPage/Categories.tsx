@@ -13,7 +13,7 @@ const categoriesData = [
 export default function Categories() {
     return (
         <>
-            <section className="base-section">
+            <section className="base-section pt-8">
                 <div className="flex justify-between items-end mb-8">
                     <h2 className="section-head">
                         Top Categories

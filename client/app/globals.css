@@ -16,6 +16,21 @@
         width: 0%;
     }
 }
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+.animate-scroll {
+    animation: scroll 20s linear infinite;
+    width: max-content;
+}
+.animate-scroll:hover {
+    animation-play-state: paused;
+}
 .border-animate {
     position: relative;
     display: inline-block;
@@ -37,6 +52,19 @@
 .border-animate:not(:hover)::after {
     animation: borderShrink 0.3s ease-in-out forwards;
 }
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-fade-in-up {
+    animation: fadeInUp 0.4s ease-out forwards;
+}
 @layer components {
     .btn-primary {
         @apply bg-[#ec1313] hover:bg-[#c40f0f] text-white font-bold py-3 px-8 rounded-md transition-all duration-300 shadow-md;
@@ -51,6 +79,7 @@
         @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6
     }
     .style-card {
-        @apply bg-white border border-gray-100 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] hover:shadow-lg hover:border-red-100 transition-all duration-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-4
+        @apply bg-white border border-gray-100 hover:shadow-lg hover:border-red-100 transition-all duration-300 rounded-2xl p-6 flex flex-col items-center justify-center gap-4;
+        box-shadow: 0 2px 10px -3px rgba(6, 81, 237, 0.1);
     }
 }
