@@ -1,8 +1,12 @@
 "use client";
 import Link from "next/link"
 import { useEffect, useState } from "react";
-import { FaShoppingCart, FaSpinner } from "react-icons/fa";
+import { FaHeart, FaShoppingCart, FaSpinner } from "react-icons/fa";
 import Image from "next/image";
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from "@/store/cartSlice";
+import { toggleFavorite } from '@/store/favoriteSlice'
+import { RootState } from '@/store/store'
 
 interface Product {
     _id: string;
@@ -17,6 +21,10 @@ export default function Trending() {
 
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true)
+
+
+    const dispatch = useDispatch();
+    const favoriteItems = useSelector((state: RootState) => state.favorites.items)
 
     useEffect(() => {
         const fetchTrendingProducts = async () => {
@@ -72,42 +80,77 @@ export default function Trending() {
                 ) : (
                     /* Product Grid */
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {products.map((product) => (
-                            <div key={product._id} className="group flex flex-col">
+                        {products.map((product) => {
 
-                                {/* Image Container */}
-                                <Link href={`/product/${product.slug}`} className="relative aspect-[4/5] bg-slate-100 rounded-2xl overflow-hidden mb-4">
-                                    <Image
-                                        src={product.images[0] || "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=500"}
-                                        alt={product.name}
-                                        fill
-                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                    />
-                                    {/* Quick Add Overlay Button */}
-                                    <div className="absolute inset-x-4 bottom-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                                        <button className="w-full bg-white text-slate-900 font-bold uppercase tracking-wider py-3 rounded-lg shadow-xl hover:bg-[#ec1313] hover:text-white transition-colors flex justify-center items-center gap-2">
-                                            <FaShoppingCart /> Quick Add
-                                        </button>
+                            const isFavorited = favoriteItems.some(item => item._id === product._id);
+
+                            return (
+                                <div key={product._id} className="group flex flex-col relative">
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            dispatch(toggleFavorite({
+                                                _id: product._id,
+                                                name: product.name,
+                                                price: product.price,
+                                                image: product.images[0] || "",
+                                                slug: product.slug
+                                            }))
+                                        }}
+                                        className="absolute top-4 right-4 z-20 bg-white/80 backdrop-blur-sm p-3 rounded-full text-slate-400 hover:text-[#ec1313] hover:bg-white shadow-sm transition-all duration-300 opacity-0 group-hover:opacity-100 cursor-pointer"
+                                        title="Add to Favorites"
+                                    >
+                                        <FaHeart className={`w-5 h-5 transition-colors ${isFavorited ? "text-[#ec1313]" : "text-slate-300"}`} />
+                                    </button>
+
+                                    {/* Image Container */}
+                                    <div className="relative aspect-[4/5] bg-slate-100 rounded-2xl overflow-hidden mb-4">
+                                        <Link href={`/product/${product.slug}`} className="absolute inset-0 z-10">
+                                            <Image
+                                                src={product.images[0] || "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=500"}
+                                                alt={product.name}
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                            />
+                                        </Link>
+
+                                        {/* Quick Add Overlay Button */}
+                                        <div className="absolute inset-x-4 bottom-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-20">
+                                            <button
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    dispatch(addToCart({
+                                                        _id: product._id,
+                                                        name: product.name,
+                                                        price: product.price,
+                                                        image: product.images[0] || "",
+                                                        slug: product.slug
+                                                    }));
+                                                }}
+                                                className="w-full bg-white text-slate-900 font-bold uppercase tracking-wider py-3 rounded-lg shadow-xl hover:bg-[#ec1313] hover:text-white transition-colors flex justify-center items-center gap-2 cursor-pointer"
+                                            >
+                                                <FaShoppingCart /> Quick Add
+                                            </button>
+                                        </div>
                                     </div>
-                                </Link>
 
-                                {/* Product Details */}
-                                <div>
-                                    <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1 block">
-                                        {product.category.replace("-", " ")}
-                                    </span>
-                                    <Link href={`/product/${product.slug}`}>
-                                        <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight leading-tight mb-2 hover:text-[#ec1313] transition-colors line-clamp-2">
-                                            {product.name}
-                                        </h3>
-                                    </Link>
-                                    <p className="text-[#ec1313] font-bold text-lg">
-                                        ${product.price.toFixed(2)}
-                                    </p>
-                                </div>
+                                    {/* Product Details */}
+                                    <div>
+                                        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1 block">
+                                            {product.category.replace("-", " ")}
+                                        </span>
+                                        <Link href={`/product/${product.slug}`}>
+                                            <h3 className="text-lg font-black text-slate-900 uppercase tracking-tight leading-tight mb-2 hover:text-[#ec1313] transition-colors line-clamp-2">
+                                                {product.name}
+                                            </h3>
+                                        </Link>
+                                        <p className="text-[#ec1313] font-bold text-lg">
+                                            ${product.price.toFixed(2)}
+                                        </p>
+                                    </div>
 
-                            </div>
-                        ))}
+                                </div>)
+                        })}
                     </div>
                 )}
             </div>
