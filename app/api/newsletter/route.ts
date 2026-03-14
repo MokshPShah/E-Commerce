@@ -1,9 +1,15 @@
 import { NextResponse } from 'next/server'
 import connectDB from '@/lib/mongodb'
 import Subscriber from '@/models/Subscriber'
-import { Resend } from 'resend'
+import nodemailer from 'nodemailer'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+})
 
 export async function POST (request: Request) {
   try {
@@ -46,8 +52,8 @@ export async function POST (request: Request) {
 
     try {
       if (source === 'lead_magnet') {
-        await resend.emails.send({
-          from: 'Strenoxa <onboarding@resend.dev>',
+        await transporter.sendMail({
+          from: `"Strenoxa Supplements" <${process.env.EMAIL_USER}>`,
           to: email,
           subject: 'Your 15% Off Code is Inside! 🚀',
           html: `
@@ -61,7 +67,7 @@ export async function POST (request: Request) {
                 <p>Stay strong,<br/>The Strenoxa Team</p>
             </div>
             <p style="text-align: center; font-size: 12px; color: #666; margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
-              Don't want these emails anymore? <a href="http://localhost:3000/unsubscribe?email=${email}" style="color: #666; text-decoration: underline;">Unsubscribe here</a>.
+              Don't want these emails anymore? <a href=" http://172.28.211.122:3000/unsubscribe?email=${email}" style="color: #666; text-decoration: underline;">Unsubscribe here</a>.
           </p>
           `
         })
@@ -71,8 +77,8 @@ export async function POST (request: Request) {
           { status: 201 }
         )
       } else {
-        await resend.emails.send({
-          from: 'Strenoxa <onboarding@resend.dev>',
+        await transporter.sendMail({
+          from: `"Strenoxa Supplements" <${process.env.EMAIL_USER}>`,
           to: email,
           subject: 'Welcome to the Strenoxa Community 🏋️‍♂️',
           html: `
@@ -83,7 +89,7 @@ export async function POST (request: Request) {
                 <p>Stay strong,<br/>The Strenoxa Team</p>
             </div>
             <p style="text-align: center; font-size: 12px; color: #666; margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
-              Don't want these emails anymore? <a href="http://localhost:3000/unsubscribe?email=${email}" style="color: #666; text-decoration: underline;">Unsubscribe here</a>.
+              Don't want these emails anymore? <a href=" http://172.28.211.122:3000/unsubscribe?email=${email}" style="color: #666; text-decoration: underline;">Unsubscribe here</a>.
           </p>
           `
         })
