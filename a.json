@@ -1,0 +1,780 @@
+[
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d001" },
+    "name": "Gold Standard 100% Whey Isolate",
+    "slug": "gold-standard-whey-isolate",
+    "desc": "24g blended protein consisting of whey isolate, concentrate, and peptides to support lean muscle mass.",
+    "longDesc": {
+      "paragraphs": [
+        "Great before or after exercise, or anytime you desire high-quality protein. This formula is packed with naturally occurring branched-chain amino acids.",
+        "Our whey undergoes a sophisticated microfiltration process to isolate out excess fat, cholesterol, and sugar."
+      ],
+      "bullets": [
+        "Instantized to mix easily using a glass and spoon.",
+        "Over 4g of Glutamine & Glutamic Acid in each serving.",
+        "Banned substance tested."
+      ]
+    },
+    "rating": 4.8,
+    "reviewCount": 1240,
+    "supplementFacts": {
+      "servingSize": "1 Scoop (30.4g)",
+      "servingsPerContainer": 74,
+      "ingredients": [
+        { "name": "Calories", "amount": "120", "dailyValue": "" },
+        { "name": "Total Fat", "amount": "1.5g", "dailyValue": "2%" },
+        { "name": "Protein", "amount": "24g", "dailyValue": "48%" }
+      ]
+    },
+    "price": 69.99,
+    "category": "protein",
+    "flavors": ["Double Rich Chocolate", "Vanilla Ice Cream"],
+    "images": [
+      "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1579722820308-d74e571900a9?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": true,
+    "createdAt": { "$date": "2026-03-16T10:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d002" },
+    "name": "Elite Pre-Workout Matrix",
+    "slug": "elite-pre-workout-matrix",
+    "desc": "Explosive energy, laser focus, and skin-tearing pumps. Clinically dosed.",
+    "longDesc": {
+      "paragraphs": [
+        "The ultimate pre-workout experience. We formulated this matrix with one goal in mind: to provide the most comprehensive enhancer on the market.",
+        "Experience tunnel-vision focus without the post-workout crash."
+      ],
+      "bullets": [
+        "8,000mg of L-Citrulline Malate.",
+        "3,200mg of Beta-Alanine.",
+        "300mg of Caffeine Anhydrous."
+      ]
+    },
+    "rating": 4.9,
+    "reviewCount": 856,
+    "supplementFacts": {
+      "servingSize": "1 Scoop (21g)",
+      "servingsPerContainer": 30,
+      "ingredients": [
+        { "name": "L-Citrulline Malate", "amount": "8g", "dailyValue": "**" },
+        { "name": "Beta-Alanine", "amount": "3.2g", "dailyValue": "**" },
+        { "name": "Caffeine", "amount": "300mg", "dailyValue": "**" }
+      ]
+    },
+    "price": 44.99,
+    "category": "pre-workout",
+    "flavors": ["Blue Raspberry", "Fruit Punch"],
+    "images": [
+      "https://images.unsplash.com/photo-1622484211148-d7ccf3c0ce25?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": true,
+    "createdAt": { "$date": "2026-03-16T10:05:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d003" },
+    "name": "Micronized Creatine Monohydrate",
+    "slug": "micronized-creatine-monohydrate",
+    "desc": "Pure, unflavored creatine monohydrate to boost strength and muscle volume.",
+    "longDesc": {
+      "paragraphs": [
+        "Creatine Monohydrate is the most extensively researched supplement in the world. It has been proven to increase muscle mass and strength.",
+        "Our creatine is micronized for superior mixing and faster absorption."
+      ],
+      "bullets": [
+        "5g of pure Creatine per serving.",
+        "Unflavored profile mixes seamlessly.",
+        "Supports ATP regeneration."
+      ]
+    },
+    "rating": 4.7,
+    "reviewCount": 2104,
+    "supplementFacts": {
+      "servingSize": "1 Scoop (5g)",
+      "servingsPerContainer": 60,
+      "ingredients": [
+        { "name": "Creatine Monohydrate", "amount": "5g", "dailyValue": "**" }
+      ]
+    },
+    "price": 29.99,
+    "category": "creatine",
+    "flavors": ["Unflavored"],
+    "images": [
+      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584824486509-112e4181f1b6?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517343985841-f6b2f6ea5647?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526506159807-1a52e1bb4ec9?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": false,
+    "createdAt": { "$date": "2026-03-16T10:10:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d004" },
+    "name": "Essential Amino Acids (EAA) + Hydration",
+    "slug": "eaa-hydration-complex",
+    "desc": "Complete amino acid profile combined with essential electrolytes to fuel recovery.",
+    "longDesc": {
+      "paragraphs": [
+        "Our EAA complex provides all 9 essential amino acids necessary for muscle protein synthesis.",
+        "Coupled with coconut water powder and key electrolytes to keep you hydrated."
+      ],
+      "bullets": [
+        "7g of total Essential Amino Acids.",
+        "Electrolyte matrix featuring Pink Himalayan Salt.",
+        "Zero sugar, zero carbs."
+      ]
+    },
+    "rating": 4.6,
+    "reviewCount": 432,
+    "supplementFacts": {
+      "servingSize": "1 Scoop (14g)",
+      "servingsPerContainer": 30,
+      "ingredients": [
+        { "name": "L-Leucine", "amount": "2.5g", "dailyValue": "**" },
+        { "name": "Coconut Water Powder", "amount": "500mg", "dailyValue": "**" },
+        { "name": "Sodium", "amount": "150mg", "dailyValue": "6%" }
+      ]
+    },
+    "price": 39.99,
+    "category": "recovery",
+    "flavors": ["Watermelon Splash", "Mango Tango"],
+    "images": [
+      "https://images.unsplash.com/photo-1552688468-d87e6f7a58f2?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1606907568152-cb459e8f49ce?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1499540633125-484965b60031?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": true,
+    "createdAt": { "$date": "2026-03-16T10:15:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d005" },
+    "name": "Plant-Based Vegan Protein",
+    "slug": "plant-based-vegan-protein",
+    "desc": "20g of premium pea and brown rice protein. Smooth texture with zero dairy.",
+    "longDesc": {
+      "paragraphs": [
+        "A complete amino acid profile derived entirely from plant sources. Ideal for vegans.",
+        "Sweetened naturally with stevia and monk fruit, delivering a rich flavor."
+      ],
+      "bullets": [
+        "20g of protein per serving.",
+        "Contains digestive enzymes.",
+        "100% Vegan, Non-GMO, and Gluten-Free."
+      ]
+    },
+    "rating": 4.5,
+    "reviewCount": 650,
+    "supplementFacts": {
+      "servingSize": "1 Scoop (32g)",
+      "servingsPerContainer": 30,
+      "ingredients": [
+        { "name": "Calories", "amount": "130", "dailyValue": "" },
+        { "name": "Protein", "amount": "20g", "dailyValue": "40%" },
+        { "name": "Iron", "amount": "5mg", "dailyValue": "28%" }
+      ]
+    },
+    "price": 49.99,
+    "category": "protein",
+    "flavors": ["Vanilla Bean", "Chocolate Cream"],
+    "images": [
+      "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1579722820308-d74e571900a9?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": false,
+    "createdAt": { "$date": "2026-03-16T10:20:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d006" },
+    "name": "Mass Gainer Extreme",
+    "slug": "mass-gainer-extreme",
+    "desc": "1,250 calories and 50g of protein to help hard-gainers pack on serious size.",
+    "longDesc": {
+      "paragraphs": [
+        "Putting on size requires a massive caloric surplus. Our Mass Gainer makes it easy.",
+        "Packed with complex carbohydrates and whey protein concentrate."
+      ],
+      "bullets": [
+        "1,250 Calories.",
+        "50g of high-quality protein.",
+        "250g of carbohydrates."
+      ]
+    },
+    "rating": 4.7,
+    "reviewCount": 890,
+    "supplementFacts": {
+      "servingSize": "2 Scoops (334g)",
+      "servingsPerContainer": 16,
+      "ingredients": [
+        { "name": "Calories", "amount": "1250", "dailyValue": "" },
+        { "name": "Total Carbohydrate", "amount": "250g", "dailyValue": "91%" },
+        { "name": "Protein", "amount": "50g", "dailyValue": "100%" }
+      ]
+    },
+    "price": 79.99,
+    "category": "protein",
+    "flavors": ["Chocolate Supreme"],
+    "images": [
+      "https://images.unsplash.com/photo-1579722820308-d74e571900a9?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": true,
+    "createdAt": { "$date": "2026-03-16T10:25:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d007" },
+    "name": "Stim-Free Pump Formula",
+    "slug": "stim-free-pump-formula",
+    "desc": "Zero caffeine. Maximum nitric oxide for late-night lifters.",
+    "longDesc": {
+      "paragraphs": [
+        "Get all the blood flow and endurance benefits of a premium pre-workout without the stimulants.",
+        "Perfect for evening workouts or stacking."
+      ],
+      "bullets": [
+        "0mg Caffeine.",
+        "10g L-Citrulline for extreme vasodilation.",
+        "1.5g Nitrosigine."
+      ]
+    },
+    "rating": 4.9,
+    "reviewCount": 312,
+    "supplementFacts": {
+      "servingSize": "1 Scoop (18g)",
+      "servingsPerContainer": 20,
+      "ingredients": [
+        { "name": "L-Citrulline", "amount": "10g", "dailyValue": "**" },
+        { "name": "Glycerol Powder", "amount": "3g", "dailyValue": "**" }
+      ]
+    },
+    "price": 49.99,
+    "category": "pre-workout",
+    "flavors": ["Cherry Limeade", "Unflavored"],
+    "images": [
+      "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1622484211148-d7ccf3c0ce25?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": false,
+    "createdAt": { "$date": "2026-03-16T10:30:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d008" },
+    "name": "Thermogenic Fat Burner",
+    "slug": "thermogenic-fat-burner",
+    "desc": "Ignite your metabolism and increase energy expenditure.",
+    "longDesc": {
+      "paragraphs": [
+        "Designed to help you push past weight-loss plateaus by increasing core body temperature.",
+        "Includes powerful nootropics to keep you focused."
+      ],
+      "bullets": [
+        "250mg Caffeine for energy.",
+        "L-Carnitine L-Tartrate.",
+        "Grains of Paradise."
+      ]
+    },
+    "rating": 4.3,
+    "reviewCount": 514,
+    "supplementFacts": {
+      "servingSize": "2 Capsules",
+      "servingsPerContainer": 30,
+      "ingredients": [
+        { "name": "Caffeine", "amount": "250mg", "dailyValue": "**" },
+        { "name": "L-Carnitine", "amount": "500mg", "dailyValue": "**" }
+      ]
+    },
+    "price": 34.99,
+    "category": "pre-workout",
+    "flavors": ["Pills"],
+    "images": [
+      "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1622484211148-d7ccf3c0ce25?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": false,
+    "createdAt": { "$date": "2026-03-16T10:35:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d009" },
+    "name": "Creatine HCL Capsules",
+    "slug": "creatine-hcl-capsules",
+    "desc": "Highly soluble creatine hydrochloride in capsule form. No loading phase.",
+    "longDesc": {
+      "paragraphs": [
+        "Creatine HCL dissolves much faster in water than monohydrate.",
+        "Say goodbye to water retention and stomach bloating."
+      ],
+      "bullets": [
+        "750mg of pure Creatine HCL per capsule.",
+        "Zero water retention.",
+        "Convenient pill form."
+      ]
+    },
+    "rating": 4.6,
+    "reviewCount": 189,
+    "supplementFacts": {
+      "servingSize": "2 Capsules",
+      "servingsPerContainer": 60,
+      "ingredients": [
+        { "name": "Creatine HCL", "amount": "1500mg", "dailyValue": "**" }
+      ]
+    },
+    "price": 24.99,
+    "category": "creatine",
+    "flavors": ["Pills"],
+    "images": [
+      "https://images.unsplash.com/photo-1584824486509-112e4181f1b6?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517343985841-f6b2f6ea5647?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526506159807-1a52e1bb4ec9?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": false,
+    "createdAt": { "$date": "2026-03-16T10:40:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d010" },
+    "name": "Flavored Creatine + Aminos",
+    "slug": "flavored-creatine-aminos",
+    "desc": "5g of Creatine infused with BCAAs and delicious flavoring.",
+    "longDesc": {
+      "paragraphs": [
+        "Why take unflavored powder when you can enjoy a refreshing intra-workout drink?",
+        "Supports muscle growth, power output, and recovery."
+      ],
+      "bullets": [
+        "5g Creatine Monohydrate.",
+        "3g 2:1:1 BCAAs.",
+        "Sugar-free hydration."
+      ]
+    },
+    "rating": 4.8,
+    "reviewCount": 420,
+    "supplementFacts": {
+      "servingSize": "1 Scoop (10g)",
+      "servingsPerContainer": 30,
+      "ingredients": [
+        { "name": "Creatine Monohydrate", "amount": "5g", "dailyValue": "**" },
+        { "name": "L-Leucine", "amount": "1.5g", "dailyValue": "**" }
+      ]
+    },
+    "price": 32.99,
+    "category": "creatine",
+    "flavors": ["Grape Ape", "Blue Slushie"],
+    "images": [
+      "https://images.unsplash.com/photo-1517343985841-f6b2f6ea5647?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526506159807-1a52e1bb4ec9?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584824486509-112e4181f1b6?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": true,
+    "createdAt": { "$date": "2026-03-16T10:45:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d011" },
+    "name": "L-Glutamine Recovery Powder",
+    "slug": "l-glutamine-recovery",
+    "desc": "Pure L-Glutamine to support gut health and muscle recovery.",
+    "longDesc": {
+      "paragraphs": [
+        "Glutamine is the most abundant amino acid in the body.",
+        "Supplementing helps restore levels, preventing muscle breakdown."
+      ],
+      "bullets": [
+        "5g of pure L-Glutamine.",
+        "Unflavored and mixes instantly.",
+        "Supports immune health."
+      ]
+    },
+    "rating": 4.7,
+    "reviewCount": 210,
+    "supplementFacts": {
+      "servingSize": "1 Scoop (5g)",
+      "servingsPerContainer": 60,
+      "ingredients": [
+        { "name": "L-Glutamine", "amount": "5g", "dailyValue": "**" }
+      ]
+    },
+    "price": 19.99,
+    "category": "recovery",
+    "flavors": ["Unflavored"],
+    "images": [
+      "https://images.unsplash.com/photo-1552688468-d87e6f7a58f2?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1606907568152-cb459e8f49ce?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1499540633125-484965b60031?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": false,
+    "createdAt": { "$date": "2026-03-16T10:50:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d012" },
+    "name": "ZMA Deep Sleep Support",
+    "slug": "zma-deep-sleep",
+    "desc": "Blend of Zinc, Magnesium, and B6 to enhance sleep and recovery.",
+    "longDesc": {
+      "paragraphs": [
+        "Recovery happens when you sleep. ZMA improves sleep quality and supports hormones.",
+        "Wake up feeling completely refreshed."
+      ],
+      "bullets": [
+        "Promotes deep, REM sleep.",
+        "Supports natural testosterone.",
+        "Prevents muscle cramps."
+      ]
+    },
+    "rating": 4.9,
+    "reviewCount": 1105,
+    "supplementFacts": {
+      "servingSize": "3 Capsules",
+      "servingsPerContainer": 30,
+      "ingredients": [
+        { "name": "Vitamin B6", "amount": "10.5mg", "dailyValue": "618%" },
+        { "name": "Magnesium", "amount": "450mg", "dailyValue": "107%" },
+        { "name": "Zinc", "amount": "30mg", "dailyValue": "273%" }
+      ]
+    },
+    "price": 22.99,
+    "category": "recovery",
+    "flavors": ["Pills"],
+    "images": [
+      "https://images.unsplash.com/photo-1606907568152-cb459e8f49ce?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1552688468-d87e6f7a58f2?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1499540633125-484965b60031?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": false,
+    "createdAt": { "$date": "2026-03-16T10:55:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d013" },
+    "name": "Men's Daily Multivitamin",
+    "slug": "mens-daily-multivitamin",
+    "desc": "Comprehensive daily vitamin tailored for active men.",
+    "longDesc": {
+      "paragraphs": [
+        "Hard training depletes essential vitamins and minerals.",
+        "This high-potency formula includes immune support."
+      ],
+      "bullets": [
+        "Over 20 essential vitamins.",
+        "Contains Lycopene.",
+        "Easy-to-swallow tablets."
+      ]
+    },
+    "rating": 4.7,
+    "reviewCount": 420,
+    "supplementFacts": {
+      "servingSize": "3 Tablets",
+      "servingsPerContainer": 30,
+      "ingredients": [
+        { "name": "Vitamin C", "amount": "300mg", "dailyValue": "333%" },
+        { "name": "Vitamin D", "amount": "1500 IU", "dailyValue": "188%" }
+      ]
+    },
+    "price": 24.99,
+    "category": "vitamins",
+    "flavors": ["Pills"],
+    "images": [
+      "https://images.unsplash.com/photo-1584824486509-112e4181f1b6?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517343985841-f6b2f6ea5647?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526506159807-1a52e1bb4ec9?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": true,
+    "createdAt": { "$date": "2026-03-16T11:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d014" },
+    "name": "Omega-3 Triple Strength Fish Oil",
+    "slug": "omega-3-triple-strength",
+    "desc": "Ultra-pure EPA and DHA to support heart and joint health.",
+    "longDesc": {
+      "paragraphs": [
+        "Ours undergoes molecular distillation to remove heavy metals.",
+        "Enteric-coated to prevent fishy burps."
+      ],
+      "bullets": [
+        "1,000mg of EPA/DHA.",
+        "Wild-caught fish.",
+        "Enteric coated."
+      ]
+    },
+    "rating": 4.9,
+    "reviewCount": 780,
+    "supplementFacts": {
+      "servingSize": "1 Softgel",
+      "servingsPerContainer": 90,
+      "ingredients": [
+        { "name": "Total Fish Oil", "amount": "1200mg", "dailyValue": "**" },
+        { "name": "EPA", "amount": "600mg", "dailyValue": "**" }
+      ]
+    },
+    "price": 29.99,
+    "category": "vitamins",
+    "flavors": ["Pills"],
+    "images": [
+      "https://images.unsplash.com/photo-1517343985841-f6b2f6ea5647?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584824486509-112e4181f1b6?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526506159807-1a52e1bb4ec9?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": false,
+    "createdAt": { "$date": "2026-03-16T11:05:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d015" },
+    "name": "Joint Support Complex",
+    "slug": "joint-support-complex",
+    "desc": "Glucosamine and Chondroitin formula to protect cartilage.",
+    "longDesc": {
+      "paragraphs": [
+        "Heavy lifting takes a toll. This matrix provides the building blocks for healthy cartilage.",
+        "Infused with Turmeric Curcumin."
+      ],
+      "bullets": [
+        "1,500mg Glucosamine Sulfate.",
+        "Contains Turmeric.",
+        "Reduces stiffness."
+      ]
+    },
+    "rating": 4.5,
+    "reviewCount": 290,
+    "supplementFacts": {
+      "servingSize": "2 Capsules",
+      "servingsPerContainer": 45,
+      "ingredients": [
+        { "name": "Glucosamine Sulfate", "amount": "1500mg", "dailyValue": "**" },
+        { "name": "Chondroitin Sulfate", "amount": "1200mg", "dailyValue": "**" }
+      ]
+    },
+    "price": 27.99,
+    "category": "vitamins",
+    "flavors": ["Pills"],
+    "images": [
+      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526506159807-1a52e1bb4ec9?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517343985841-f6b2f6ea5647?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584824486509-112e4181f1b6?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": false,
+    "createdAt": { "$date": "2026-03-16T11:10:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d016" },
+    "name": "Premium Stainless Steel Shaker",
+    "slug": "stainless-steel-shaker",
+    "desc": "Double-wall vacuum insulated 24oz shaker bottle.",
+    "longDesc": {
+      "paragraphs": [
+        "Stop replacing cheap plastic shakers. Our stainless steel shaker is indestructible.",
+        "Includes a built-in wire whisk."
+      ],
+      "bullets": [
+        "24oz capacity.",
+        "BPA-free, leak-proof lid.",
+        "Odor-resistant."
+      ]
+    },
+    "rating": 4.9,
+    "reviewCount": 1430,
+    "supplementFacts": {
+      "servingSize": "Accessory",
+      "servingsPerContainer": 1,
+      "ingredients": [
+        { "name": "Material", "amount": "100%", "dailyValue": "Steel" }
+      ]
+    },
+    "price": 24.99,
+    "category": "accessories",
+    "flavors": ["Matte Black", "Gunmetal"],
+    "images": [
+      "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1622484211148-d7ccf3c0ce25?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": true,
+    "createdAt": { "$date": "2026-03-16T11:15:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d017" },
+    "name": "Heavy-Duty Lifting Straps",
+    "slug": "heavy-duty-lifting-straps",
+    "desc": "Neoprene-padded cotton lifting straps for heavy deadlifts.",
+    "longDesc": {
+      "paragraphs": [
+        "Don't let grip strength limit your gains. These extended-length straps allow for multiple wraps.",
+        "Reinforced stitching ensures they last."
+      ],
+      "bullets": [
+        "Thick neoprene padding.",
+        "100% heavy-duty cotton.",
+        "One size fits all."
+      ]
+    },
+    "rating": 4.8,
+    "reviewCount": 355,
+    "supplementFacts": {
+      "servingSize": "Accessory",
+      "servingsPerContainer": 2,
+      "ingredients": [
+        { "name": "Material", "amount": "100%", "dailyValue": "Cotton" }
+      ]
+    },
+    "price": 14.99,
+    "category": "accessories",
+    "flavors": ["Black", "Red"],
+    "images": [
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1622484211148-d7ccf3c0ce25?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": false,
+    "createdAt": { "$date": "2026-03-16T11:20:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d018" },
+    "name": "Strenoxa Premium Oversized Tee",
+    "slug": "strenoxa-premium-oversized-tee",
+    "desc": "Heavyweight 100% cotton pump cover with a dropped shoulder fit.",
+    "longDesc": {
+      "paragraphs": [
+        "The ultimate pump cover. Constructed from premium cotton for a structured drape.",
+        "Features a minimalist logo."
+      ],
+      "bullets": [
+        "100% Heavyweight Cotton.",
+        "Oversized, boxy fit.",
+        "Pre-shrunk."
+      ]
+    },
+    "rating": 5.0,
+    "reviewCount": 84,
+    "supplementFacts": {
+      "servingSize": "Apparel",
+      "servingsPerContainer": 1,
+      "ingredients": [
+        { "name": "Material", "amount": "100%", "dailyValue": "Cotton" }
+      ]
+    },
+    "price": 35.00,
+    "category": "apparel",
+    "flavors": ["Black", "Off-White"],
+    "images": [
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1579722820308-d74e571900a9?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": true,
+    "createdAt": { "$date": "2026-03-16T11:25:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d019" },
+    "name": "Performance Joggers",
+    "slug": "performance-joggers",
+    "desc": "Tapered fit, 4-way stretch material designed for heavy squats.",
+    "longDesc": {
+      "paragraphs": [
+        "Unrestricted movement. These joggers feature a specialized gusset.",
+        "Includes deep zipper pockets."
+      ],
+      "bullets": [
+        "Moisture-wicking fabric.",
+        "Tapered ankle.",
+        "Drawstring waist."
+      ]
+    },
+    "rating": 4.6,
+    "reviewCount": 142,
+    "supplementFacts": {
+      "servingSize": "Apparel",
+      "servingsPerContainer": 1,
+      "ingredients": [
+        { "name": "Material", "amount": "80%", "dailyValue": "Polyester" }
+      ]
+    },
+    "price": 55.00,
+    "category": "apparel",
+    "flavors": ["Black", "Olive Green"],
+    "images": [
+      "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1579722820308-d74e571900a9?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1593095948071-474c5cc2989d?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": false,
+    "createdAt": { "$date": "2026-03-16T11:30:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "65f4b3c2e4d5f6a7b8c9d020" },
+    "name": "Vitamin D3 + K2 Liquid Drops",
+    "slug": "vitamin-d3-k2-drops",
+    "desc": "High-absorption liquid formula to support bone health.",
+    "longDesc": {
+      "paragraphs": [
+        "Vitamin D3 needs K2 to properly direct calcium into your bones.",
+        "Suspended in MCT oil."
+      ],
+      "bullets": [
+        "5,000 IU of Vitamin D3.",
+        "100mcg of MK-7 Vitamin K2.",
+        "Easy-to-use dropper."
+      ]
+    },
+    "rating": 4.9,
+    "reviewCount": 334,
+    "supplementFacts": {
+      "servingSize": "1 mL",
+      "servingsPerContainer": 30,
+      "ingredients": [
+        { "name": "Vitamin D3", "amount": "125mcg", "dailyValue": "625%" }
+      ]
+    },
+    "price": 21.99,
+    "category": "vitamins",
+    "flavors": ["Mint"],
+    "images": [
+      "https://images.unsplash.com/photo-1584824486509-112e4181f1b6?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526506159807-1a52e1bb4ec9?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517343985841-f6b2f6ea5647?q=80&w=600&auto=format&fit=crop"
+    ],
+    "inStock": true,
+    "isTrending": false,
+    "createdAt": { "$date": "2026-03-16T11:35:00.000Z" }
+  }
+]

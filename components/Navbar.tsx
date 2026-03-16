@@ -1,111 +1,104 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { FaShoppingCart, FaBars, FaTimes, FaUser } from "react-icons/fa";
+import { FaShoppingCart, FaUser, FaSearch, FaSignOutAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Navbar() {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
-
     const cartItems = useSelector((state: RootState) => state.cart.items);
+    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+    const [searchTerm, setSearchTerm] = useState("");
+    const router = useRouter();
+    
+    // Check if the user is logged in
+    const { data: session, status } = useSession();
 
-    const totalCartItems = cartItems.reduce((total, item) => total + item.quantity, 0)
-
-    useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 20);
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    const navLinks = [
-        { name: "Shop All", href: "/shop" },
-        { name: "Protein", href: "/shop?category=protein" },
-        { name: "Pre-Workout", href: "/shop?category=pre-workout" },
-        { name: "Creatine", href: "/shop?category=creatine" },
-        { name: "Apparel", href: "/shop?category=apparel" },
-    ];
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (searchTerm.trim()) {
+            router.push(`/shop?q=${encodeURIComponent(searchTerm.trim())}`);
+            setSearchTerm("");
+        }
+    };
 
     return (
-        <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 py-0"
-                : "bg-white border-b border-transparent py-2"
-                }`}
-        >
-            <div className="max-w-[1600px] mx-auto px-4 md:px-9">
-                <div className="flex items-center justify-between h-20">
+        <header className="fixed top-0 left-0 right-0 h-24 bg-white border-b border-slate-100 z-50 flex items-center">
+            <div className="max-w-[1400px] w-full mx-auto px-4 md:px-8 flex items-center justify-between gap-4 md:gap-8">
+                
+                <Link href="/" className="text-2xl md:text-3xl font-black text-slate-950 tracking-tighter cursor-pointer">
+                    STRENOXA<span className="text-[#ec1313]">.</span>
+                </Link>
 
-                    <Link href="/" className="flex-shrink-0 flex items-center gap-1 group">
-                        <h1 className="text-2xl md:text-3xl font-black text-slate-950 tracking-tighter transition-transform group-hover:scale-105">
-                            STRENOXA <span className="text-[#ec1313]">.</span>
-                        </h1>
+                <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+                    <Link href="/shop" className="text-xs font-bold text-slate-900 hover:text-[#ec1313] transition-colors cursor-pointer uppercase tracking-widest">
+                        Shop All
                     </Link>
+                    <Link href="/shop?category=protein" className="text-xs font-bold text-slate-500 hover:text-[#ec1313] transition-colors cursor-pointer uppercase tracking-widest">
+                        Protein
+                    </Link>
+                    <Link href="/shop?category=pre-workout" className="text-xs font-bold text-slate-500 hover:text-[#ec1313] transition-colors cursor-pointer uppercase tracking-widest">
+                        Pre-Workout
+                    </Link>
+                    <Link href="/shop?category=creatine" className="text-xs font-bold text-slate-500 hover:text-[#ec1313] transition-colors cursor-pointer uppercase tracking-widest">
+                        Creatine
+                    </Link>
+                    <Link href="/shop?category=apparel" className="text-xs font-bold text-slate-500 hover:text-[#ec1313] transition-colors cursor-pointer uppercase tracking-widest">
+                        Apparel
+                    </Link>
+                </div>
 
-                    <nav className="hidden md:flex items-center gap-8">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className={`text-sm font-bold uppercase tracking-wider transition-colors relative group ${link.name === "Shop All" ? "text-[#ec1313]" : "text-slate-700 hover:text-[#ec1313]"
-                                    }`}
+                <div className="flex-grow max-w-md hidden md:block">
+                    <form onSubmit={handleSearch} className="relative flex items-center">
+                        <input 
+                            type="text" 
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            placeholder="Search supplements..."
+                            className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium rounded-full py-3.5 pl-6 pr-12 focus:outline-none focus:border-[#ec1313] focus:ring-1 focus:ring-[#ec1313] transition-all"
+                        />
+                        <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center text-slate-400 hover:text-[#ec1313] transition-colors cursor-pointer">
+                            <FaSearch size={16} />
+                        </button>
+                    </form>
+                </div>
+
+                <div className="flex items-center gap-6">
+                    {/* Conditional Auth Rendering */}
+                    {status === "loading" ? (
+                        <div className="w-5 h-5 border-2 border-slate-200 border-t-[#ec1313] rounded-full animate-spin hidden sm:block"></div>
+                    ) : session ? (
+                        <div className="hidden sm:flex items-center gap-4">
+                            <div className="w-8 h-8 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-xs uppercase cursor-pointer">
+                                {session.user?.email?.[0] || session.user?.name?.[0] || "U"}
+                            </div>
+                            <button 
+                                onClick={() => signOut()}
+                                className="text-slate-400 hover:text-[#ec1313] transition-colors cursor-pointer"
+                                title="Logout"
                             >
-                                {link.name}
-                                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#ec1313] transition-all group-hover:w-full"></span>
-                            </Link>
-                        ))}
-                    </nav>
-
-                    <div className="flex items-center gap-5 md:gap-6">
-                        <Link href="/account" className="text-slate-700 hover:text-[#ec1313] transition-colors hidden sm:block">
+                                <FaSignOutAlt size={18} />
+                            </button>
+                        </div>
+                    ) : (
+                        <Link href="/login" className="text-slate-900 hover:text-[#ec1313] transition-colors cursor-pointer hidden sm:block">
                             <FaUser size={20} />
                         </Link>
+                    )}
 
-                        <Link href="/cart" className="text-slate-700 hover:text-[#ec1313] transition-colors relative group">
-                            <FaShoppingCart size={22} className="group-hover:scale-110 transition-transform" />
-                            <span className="absolute -top-2 -right-2 bg-[#ec1313] text-white text-[10px] font-bold h-[18px] min-w-[18px] px-[4px] rounded-full flex items-center justify-center ring-2 ring-white">
-                                {totalCartItems > 99 ? "99+" : totalCartItems}
+                    <Link href="/cart" className="relative text-slate-900 hover:text-[#ec1313] transition-colors cursor-pointer">
+                        <FaShoppingCart size={22} />
+                        {totalItems > 0 && (
+                            <span className="absolute -top-2 -right-2 bg-[#ec1313] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
+                                {totalItems}
                             </span>
-                        </Link>
-
-                        <button
-                            className="md:hidden text-slate-900 hover:text-[#ec1313] transition-colors focus:outline-none"
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        >
-                            {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-
-            {/* Mobile Navigation Dropdown */}
-            <div
-                className={`md:hidden absolute top-[100%] left-0 w-full bg-white border-b border-slate-200 shadow-xl transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-                    }`}
-            >
-                <div className="flex flex-col px-6 py-6 space-y-4 bg-slate-50">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className={`text-lg font-black uppercase tracking-widest transition-colors border-b border-slate-200 pb-3 ${link.name === "Shop All" ? "text-[#ec1313]" : "text-slate-900 hover:text-[#ec1313]"
-                                }`}
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-                    <Link
-                        href="/account"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-lg font-black text-slate-900 hover:text-[#ec1313] uppercase tracking-widest transition-colors pt-2 flex items-center gap-3"
-                    >
-                        <FaUser size={20} className="text-[#ec1313]" /> My Account
+                        )}
                     </Link>
                 </div>
+
             </div>
         </header>
     );
