@@ -17,9 +17,9 @@ export default function CartPage() {
     const [promoCode, setPromoCode] = useState("");
 
     const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-    const subtotal = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-    const shipping = subtotal > 100 || subtotal === 0 ? 0 : 6.99;
-    const tax = subtotal * 0.08; 
+    const subtotal = cartItems.reduce((total, item) => total + (item.price || 0) * item.quantity, 0);
+    const shipping = subtotal > 99.00 || subtotal === 0 ? 0 : 9.99;
+    const tax = subtotal * 0.08;
     const total = subtotal + shipping + tax;
 
     if (cartItems.length === 0) {
@@ -38,9 +38,9 @@ export default function CartPage() {
     }
 
     return (
-        <div className="min-h-screen bg-[#f8f9fa] pt-40 lg:pt-48 pb-24">
+        <div className="min-h-screen bg-[#f8f9fa] pt-40 lg:pt-40 pb-24">
             <div className="max-w-[1200px] mx-auto px-4 md:px-8">
-                
+
                 <div className="flex justify-between items-end mb-10 border-b border-slate-200 pb-6">
                     <div className="flex items-end gap-4">
                         <h1 className="text-4xl md:text-5xl font-black text-slate-950 tracking-tight">
@@ -50,7 +50,7 @@ export default function CartPage() {
                             ({totalItems} items)
                         </span>
                     </div>
-                    <button 
+                    <button
                         onClick={() => {
                             dispatch(setCart([]));
                             toast.success("Cart cleared");
@@ -62,7 +62,7 @@ export default function CartPage() {
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-8 items-start">
-                    
+
                     <div className="w-full lg:flex-grow flex flex-col gap-4">
                         <div className="hidden md:grid grid-cols-[3fr_1fr_1fr_1fr] text-sm font-bold text-slate-500 pb-2 px-2">
                             <div>Product</div>
@@ -73,8 +73,8 @@ export default function CartPage() {
 
                         {cartItems.map((item) => (
                             <div key={`${item._id}-${item.flavor}`} className="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:grid md:grid-cols-[3fr_1fr_1fr_1fr] items-center gap-4 relative">
-                                
-                                <button 
+
+                                <button
                                     onClick={() => dispatch(removeFromCart({ _id: item._id, flavor: item.flavor }))}
                                     className="absolute top-4 right-4 text-slate-300 hover:text-[#ec1313] md:hidden cursor-pointer"
                                 >
@@ -82,8 +82,13 @@ export default function CartPage() {
                                 </button>
 
                                 <div className="flex items-center gap-5 w-full">
-                                    <Link href={`/product/${item.slug}`} className="relative w-24 h-24 bg-slate-50 rounded-xl overflow-hidden flex-shrink-0 border border-slate-100 cursor-pointer">
-                                        <Image src={item.image} alt={item.name} fill className="object-contain p-2 mix-blend-multiply" />
+                                    {/* Fixed: Wrapped in a condition so it doesn't crash on missing images */}
+                                    <Link href={`/product/${item.slug}`} className="relative w-24 h-24 bg-slate-50 rounded-xl overflow-hidden flex-shrink-0 border border-slate-100 cursor-pointer flex items-center justify-center">
+                                        {item.image ? (
+                                            <Image src={item.image} alt={item.name || "Product image"} fill className="object-contain p-2 mix-blend-multiply" />
+                                        ) : (
+                                            <span className="text-slate-400 text-xs font-bold text-center px-2">No Image</span>
+                                        )}
                                     </Link>
                                     <div className="flex flex-col">
                                         <Link href={`/product/${item.slug}`} className="cursor-pointer">
@@ -98,23 +103,25 @@ export default function CartPage() {
                                     </div>
                                 </div>
 
+                                {/* Fixed: Desktop price crash prevention */}
                                 <div className="hidden md:block text-center font-bold text-slate-900 text-lg">
-                                    ${item.price.toFixed(2)}
+                                    ${(item.price || 0).toFixed(2)}
                                 </div>
 
                                 <div className="flex justify-between items-center w-full md:w-auto mt-4 md:mt-0">
+                                    {/* Fixed: Mobile price crash prevention */}
                                     <div className="md:hidden font-bold text-slate-900 text-lg">
-                                        ${item.price.toFixed(2)}
+                                        ${(item.price || 0).toFixed(2)}
                                     </div>
                                     <div className="flex items-center justify-between border-2 border-slate-100 bg-slate-50 rounded-lg overflow-hidden h-12 w-32 mx-auto">
-                                        <button 
+                                        <button
                                             onClick={() => dispatch(decreaseQuantity({ _id: item._id, flavor: item.flavor }))}
                                             className="w-10 h-full flex items-center justify-center text-slate-400 hover:text-[#ec1313] hover:bg-slate-100 transition-colors cursor-pointer"
                                         >
                                             <FaMinus size={10} />
                                         </button>
                                         <span className="font-black text-slate-900">{item.quantity}</span>
-                                        <button 
+                                        <button
                                             onClick={() => dispatch(addToCart({ ...item, quantity: 1 }))}
                                             className="w-10 h-full flex items-center justify-center text-slate-400 hover:text-[#ec1313] hover:bg-slate-100 transition-colors cursor-pointer"
                                         >
@@ -123,11 +130,12 @@ export default function CartPage() {
                                     </div>
                                 </div>
 
+                                {/* Fixed: Desktop total price crash prevention */}
                                 <div className="hidden md:flex justify-end items-center gap-4">
                                     <div className="font-black text-[#ec1313] text-lg">
-                                        ${(item.price * item.quantity).toFixed(2)}
+                                        ${((item.price || 0) * item.quantity).toFixed(2)}
                                     </div>
-                                    <button 
+                                    <button
                                         onClick={() => dispatch(removeFromCart({ _id: item._id, flavor: item.flavor }))}
                                         className="text-slate-300 hover:text-[#ec1313] transition-colors cursor-pointer"
                                         title="Remove item"
@@ -153,7 +161,7 @@ export default function CartPage() {
                                             <p className="font-bold text-[#ec1313] text-sm mt-0.5">$12.99</p>
                                         </div>
                                     </div>
-                                    <button 
+                                    <button
                                         onClick={() => toast.success("Added Pro Shaker to cart!")}
                                         className="w-10 h-10 rounded-full border-2 border-[#ec1313] text-[#ec1313] flex items-center justify-center hover:bg-[#ec1313] hover:text-white transition-colors flex-shrink-0 cursor-pointer"
                                     >
@@ -170,7 +178,7 @@ export default function CartPage() {
                                             <p className="font-bold text-[#ec1313] text-sm mt-0.5">$24.99</p>
                                         </div>
                                     </div>
-                                    <button 
+                                    <button
                                         onClick={() => toast.success("Added Multivitamin to cart!")}
                                         className="w-10 h-10 rounded-full border-2 border-[#ec1313] text-[#ec1313] flex items-center justify-center hover:bg-[#ec1313] hover:text-white transition-colors flex-shrink-0 cursor-pointer"
                                     >
@@ -184,7 +192,7 @@ export default function CartPage() {
 
                     <div className="w-full lg:w-[400px] bg-white p-8 rounded-3xl shadow-lg border border-slate-100 sticky top-32 flex-shrink-0">
                         <h2 className="text-2xl font-black text-slate-900 mb-6">Order Summary</h2>
-                        
+
                         <div className="flex flex-col gap-4 text-slate-600 font-medium mb-6">
                             <div className="flex justify-between">
                                 <span>Subtotal</span>
@@ -207,14 +215,14 @@ export default function CartPage() {
                         <div className="mb-6">
                             <label className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2 block">Promo Code</label>
                             <div className="flex gap-2">
-                                <input 
-                                    type="text" 
+                                <input
+                                    type="text"
                                     value={promoCode}
                                     onChange={(e) => setPromoCode(e.target.value)}
                                     placeholder="Enter code"
                                     className="flex-grow bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-slate-400 font-medium"
                                 />
-                                <button 
+                                <button
                                     onClick={() => {
                                         if (promoCode) toast.error("Invalid promo code");
                                     }}
@@ -236,7 +244,7 @@ export default function CartPage() {
                         <button className="w-full bg-[#ec1313] hover:bg-[#c40f0f] text-white py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-xl shadow-red-500/20 active:scale-[0.98] flex justify-center items-center gap-2 mb-6 cursor-pointer">
                             Proceed to Checkout <FaArrowRight size={14} />
                         </button>
-                        
+
                         <div className="flex justify-center items-center gap-4 text-slate-300">
                             <FaCreditCard size={24} />
                             <FaPaypal size={24} />

@@ -5,8 +5,11 @@ export interface IUser extends Document {
   email?: string
   password?: string
   role: 'user' | 'admin'
-  emailVerified?: Date
   image?: string
+  cart: {
+    productId: mongoose.Types.ObjectId
+    quantity: number
+  }[]
   createdAt: Date
 }
 
@@ -24,15 +27,18 @@ const UserSchema = new Schema<IUser>({
   },
   role: {
     type: String,
-    enum: ['user', 'admin'],
+    enum: ['user', 'admin', 'super admin'],
     default: 'user'
-  },
-  emailVerified: {
-    type: Date
   },
   image: {
     type: String
   },
+  cart: [
+    {
+      productId: { type: Schema.Types.ObjectId, ref: 'Product' },
+      quantity: { type: Number, default: 1 }
+    }
+  ],
   createdAt: {
     type: Date,
     default: Date.now

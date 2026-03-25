@@ -7,13 +7,14 @@ import { RootState } from "@/store/store";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
+import UserDropdown from "./UserDropdown";
 
 export default function Navbar() {
     const cartItems = useSelector((state: RootState) => state.cart.items);
     const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
     const [searchTerm, setSearchTerm] = useState("");
     const router = useRouter();
-    
+
     // Check if the user is logged in
     const { data: session, status } = useSession();
 
@@ -28,7 +29,7 @@ export default function Navbar() {
     return (
         <header className="fixed top-0 left-0 right-0 h-24 bg-white border-b border-slate-100 z-50 flex items-center">
             <div className="max-w-[1400px] w-full mx-auto px-4 md:px-8 flex items-center justify-between gap-4 md:gap-8">
-                
+
                 <Link href="/" className="text-2xl md:text-3xl font-black text-slate-950 tracking-tighter cursor-pointer">
                     STRENOXA<span className="text-[#ec1313]">.</span>
                 </Link>
@@ -53,8 +54,8 @@ export default function Navbar() {
 
                 <div className="flex-grow max-w-md hidden md:block">
                     <form onSubmit={handleSearch} className="relative flex items-center">
-                        <input 
-                            type="text" 
+                        <input
+                            type="text"
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                             placeholder="Search supplements..."
@@ -67,27 +68,11 @@ export default function Navbar() {
                 </div>
 
                 <div className="flex items-center gap-6">
-                    {/* Conditional Auth Rendering */}
-                    {status === "loading" ? (
-                        <div className="w-5 h-5 border-2 border-slate-200 border-t-[#ec1313] rounded-full animate-spin hidden sm:block"></div>
-                    ) : session ? (
-                        <div className="hidden sm:flex items-center gap-4">
-                            <div className="w-8 h-8 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-xs uppercase cursor-pointer">
-                                {session.user?.email?.[0] || session.user?.name?.[0] || "U"}
-                            </div>
-                            <button 
-                                onClick={() => signOut()}
-                                className="text-slate-400 hover:text-[#ec1313] transition-colors cursor-pointer"
-                                title="Logout"
-                            >
-                                <FaSignOutAlt size={18} />
-                            </button>
-                        </div>
-                    ) : (
-                        <Link href="/login" className="text-slate-900 hover:text-[#ec1313] transition-colors cursor-pointer hidden sm:block">
-                            <FaUser size={20} />
-                        </Link>
-                    )}
+
+                    <div className="flex items-center gap-4">
+                        {/* Other icons like Cart */}
+                        <UserDropdown />
+                    </div>
 
                     <Link href="/cart" className="relative text-slate-900 hover:text-[#ec1313] transition-colors cursor-pointer">
                         <FaShoppingCart size={22} />

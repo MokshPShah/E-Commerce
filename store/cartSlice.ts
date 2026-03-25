@@ -24,10 +24,14 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (
       state,
-      action: PayloadAction<Omit<CartItem, 'quantity'> & { quantity?: number; flavor?: string }>
+      action: PayloadAction<
+        Omit<CartItem, 'quantity'> & { quantity?: number; flavor?: string }
+      >
     ) => {
       const existingItem = state.items.find(
-        item => item._id === action.payload._id && item.flavor === action.payload.flavor
+        item =>
+          item._id === action.payload._id &&
+          item.flavor === action.payload.flavor
       )
 
       const amountToAdd = action.payload.quantity || 1
@@ -38,30 +42,50 @@ const cartSlice = createSlice({
         state.items.push({ ...action.payload, quantity: amountToAdd })
       }
     },
-    decreaseQuantity: (state, action: PayloadAction<{ _id: string; flavor?: string }>) => {
+    decreaseQuantity: (
+      state,
+      action: PayloadAction<{ _id: string; flavor?: string }>
+    ) => {
       const existingItem = state.items.find(
-        item => item._id === action.payload._id && item.flavor === action.payload.flavor
+        item =>
+          item._id === action.payload._id &&
+          item.flavor === action.payload.flavor
       )
       if (existingItem) {
         if (existingItem.quantity === 1) {
           state.items = state.items.filter(
-            item => !(item._id === action.payload._id && item.flavor === action.payload.flavor)
+            item =>
+              !(
+                item._id === action.payload._id &&
+                item.flavor === action.payload.flavor
+              )
           )
         } else {
           existingItem.quantity -= 1
         }
       }
     },
-    removeFromCart: (state, action: PayloadAction<{ _id: string; flavor?: string }>) => {
+    removeFromCart: (
+      state,
+      action: PayloadAction<{ _id: string; flavor?: string }>
+    ) => {
       state.items = state.items.filter(
-        item => !(item._id === action.payload._id && item.flavor === action.payload.flavor)
+        item =>
+          !(
+            item._id === action.payload._id &&
+            item.flavor === action.payload.flavor
+          )
       )
     },
     setCart: (state, action: PayloadAction<CartItem[]>) => {
       state.items = action.payload
+    },
+    clearCart: state => {
+      state.items = []
     }
   }
 })
 
-export const { addToCart, decreaseQuantity, removeFromCart, setCart } = cartSlice.actions
+export const { addToCart, decreaseQuantity, removeFromCart, setCart } =
+  cartSlice.actions
 export default cartSlice.reducer

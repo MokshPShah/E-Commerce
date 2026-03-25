@@ -35,9 +35,17 @@ export default function Trending() {
             try {
                 const res = await fetch('/api/products?trending=true');
                 const data = await res.json();
-                setProducts(data);
+                
+                // FIX: Check if the response is actually an array before setting state
+                if (Array.isArray(data)) {
+                    setProducts(data);
+                } else {
+                    console.error("API Error or Invalid Data:", data);
+                    setProducts([]); // Fallback to empty array to prevent crashes
+                }
             } catch (error) {
-                console.error(error);
+                console.error("Fetch failed:", error);
+                setProducts([]); // Fallback to empty array
             } finally {
                 setLoading(false);
             }
@@ -49,7 +57,7 @@ export default function Trending() {
         return <div className="py-24 text-center font-black uppercase tracking-widest text-slate-300 animate-pulse">Loading Trending Gear...</div>;
     }
 
-    if (products.length === 0) {
+    if (!Array.isArray(products) || products.length === 0) {
         return null;
     }
 
@@ -61,13 +69,14 @@ export default function Trending() {
                         <h2 className="text-4xl md:text-5xl font-black text-slate-950 uppercase tracking-tighter">Trending Now</h2>
                         <p className="text-slate-500 font-medium mt-2">The highest performing gear this week.</p>
                     </div>
-                    <Link href="/shop" className="hidden md:flex items-center gap-2 font-bold text-slate-900 uppercase tracking-widest text-sm hover:text-[#ec1313] transition-colors">
+                    <Link href="/shop" className="hidden md:flex items-center gap-2 font-bold text-slate-900 uppercase tracking-widest text-sm hover:text-[#ec1313] transition-colors cursor-pointer">
                         View All <FaArrowRight />
                     </Link>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                    {products.map((product) => {
+                    {/* Extra safety layer: Optional chaining with Array.isArray */}
+                    {Array.isArray(products) && products.map((product) => {
                         const isFavorited = favoriteItems.some(item => item._id === product._id);
                         const isInCart = cartItems.some(item => item._id === product._id);
 
@@ -94,12 +103,12 @@ export default function Trending() {
                                                 toast.success('Added to favorites!');
                                             }
                                         }}
-                                        className="absolute top-3 right-3 z-20 bg-white p-2.5 rounded-full shadow-sm hover:scale-110 transition-transform duration-300"
+                                        className="absolute top-3 right-3 z-20 bg-white p-2.5 rounded-full shadow-sm hover:scale-110 transition-transform duration-300 cursor-pointer"
                                     >
                                         <FaHeart className={`w-4 h-4 transition-colors ${isFavorited ? "text-[#ec1313]" : "text-slate-300"}`} />
                                     </button>
 
-                                    <Link href={`/product/${product.slug}`} className="absolute inset-0 z-10 flex items-center justify-center p-8">
+                                    <Link href={`/product/${product.slug}`} className="absolute inset-0 z-10 flex items-center justify-center p-8 cursor-pointer">
                                         <Image 
                                             src={product.images[0]} 
                                             alt={product.name} 
@@ -112,7 +121,7 @@ export default function Trending() {
                                         {isInCart ? (
                                             <button 
                                                 onClick={() => router.push('/cart')}
-                                                className="w-full bg-green-500 text-white font-black uppercase tracking-widest text-xs py-4 flex justify-center items-center gap-2 hover:bg-green-600 transition-colors"
+                                                className="w-full bg-green-500 text-white font-black uppercase tracking-widest text-xs py-4 flex justify-center items-center gap-2 hover:bg-green-600 transition-colors cursor-pointer"
                                             >
                                                 <FaCheck size={14} /> View in Cart
                                             </button>
@@ -125,7 +134,7 @@ export default function Trending() {
                                                     }));
                                                     toast.success(`${product.name} added!`);
                                                 }}
-                                                className="w-full bg-[#ec1313] text-white font-black uppercase tracking-widest text-xs py-4 flex justify-center items-center gap-2 hover:bg-[#c40f0f] transition-colors"
+                                                className="w-full bg-[#ec1313] text-white font-black uppercase tracking-widest text-xs py-4 flex justify-center items-center gap-2 hover:bg-[#c40f0f] transition-colors cursor-pointer"
                                             >
                                                 <FaShoppingCart size={14} /> Quick Add
                                             </button>
@@ -135,15 +144,15 @@ export default function Trending() {
 
                                 <div className="flex flex-col text-left px-1">
                                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">
-                                        {product.category.replace("-", " ")}
+                                        {product.category?.replace("-", " ")}
                                     </span>
-                                    <Link href={`/product/${product.slug}`}>
+                                    <Link href={`/product/${product.slug}`} className="cursor-pointer">
                                         <h3 className="text-base font-black text-slate-900 uppercase tracking-tight mb-1 hover:text-[#ec1313] transition-colors line-clamp-1">
                                             {product.name}
                                         </h3>
                                     </Link>
                                     <p className="text-slate-900 font-bold text-sm">
-                                        ${product.price.toFixed(2)}
+                                        ${product.price?.toFixed(2)}
                                     </p>
                                 </div>
                             </div>

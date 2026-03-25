@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Providers from "@/components/Providers";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "@/components/AuthProvider";
+import LayoutWrapper from "@/components/LayoutWrapper"; // Import the new wrapper
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,12 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
         <AuthProvider>
           <Providers>
-            <Navbar />
             <Toaster
               position="bottom-right"
               toastOptions={{
@@ -52,8 +48,10 @@ export default function RootLayout({
                 },
               }}
             />
-            {children}
-            <Footer />
+            {/* Let the wrapper handle the Nav and Footer logic! */}
+            <LayoutWrapper>
+              {children}
+            </LayoutWrapper>
           </Providers>
         </AuthProvider>
       </body>

@@ -1,28 +1,32 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { FaEnvelope, FaLock, FaGoogle, FaApple, FaBolt, FaCheckCircle } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
 
-function LoginContent() {
+export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [magicEmail, setMagicEmail] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    
+    const { status } = useSession();
     const router = useRouter();
-    const searchParams = useSearchParams();
-    const isVerifyRequest = searchParams.get("verifyRequest") === "true";
 
-    const handlePasswordLogin = async (e: React.FormEvent) => {
+    useEffect(() => {
+        if (status === "authenticated") {
+            router.push("/");
+        }
+    }, [status, router]);
+
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
         const res = await signIn("credentials", {
-            redirect: false,
+            redirect: true,
+            callbackUrl: '/',
             email,
             password,
         });
@@ -37,49 +41,15 @@ function LoginContent() {
         }
     };
 
-    const handleMagicLink = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsLoading(true);
-        const res = await signIn("email", {
-            email: magicEmail,
-            redirect: false,
-            callbackUrl: "/",
-        });
-
-        if (res?.error) {
-            toast.error("Failed to send magic link");
-            setIsLoading(false);
-        } else {
-            router.push("/login?verifyRequest=true");
-        }
-    };
-
-    if (isVerifyRequest) {
-        return (
-            <div className="min-h-screen flex bg-white pt-24">
-                <div className="w-full flex items-center justify-center p-8">
-                    <div className="max-w-md text-center bg-slate-50 p-12 rounded-3xl border border-slate-100 shadow-sm">
-                        <FaCheckCircle className="text-green-500 text-6xl mx-auto mb-6" />
-                        <h2 className="text-3xl font-black text-slate-950 tracking-tight mb-4">Check Your Email</h2>
-                        <p className="text-slate-600 font-medium mb-8">
-                            A magic login link has been sent to your email address. Click the link to instantly sign in to your account.
-                        </p>
-                        <Link href="/login" className="text-[#ec1313] font-bold uppercase tracking-widest text-sm hover:underline cursor-pointer">
-                            Back to Login
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+    if (status === "loading") return null;
 
     return (
         <div className="min-h-screen flex bg-white pt-24">
             <div className="hidden lg:flex w-1/2 relative bg-slate-950">
-                <Image 
-                    src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1400&auto=format&fit=crop" 
-                    alt="Gym Atmosphere" 
-                    fill 
+                <Image
+                    src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1400&auto=format&fit=crop"
+                    alt="Gym Atmosphere"
+                    fill
                     className="object-cover opacity-50 mix-blend-luminosity"
                     priority
                 />
@@ -89,7 +59,7 @@ function LoginContent() {
                         Elite Performance
                     </span>
                     <h1 className="text-6xl font-black text-white italic tracking-tighter leading-tight mb-4 uppercase">
-                        Fuel Your <br/><span className="text-[#ec1313]">Ambition</span>
+                        Fuel Your <br /><span className="text-[#ec1313]">Ambition</span>
                     </h1>
                     <p className="text-slate-300 font-medium text-lg leading-relaxed">
                         Access your personalized supplement stacks and track your fitness goals with the Strenoxa community.
@@ -99,21 +69,21 @@ function LoginContent() {
 
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 overflow-y-auto">
                 <div className="w-full max-w-md bg-white p-8 md:p-12 rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.05)] border border-slate-100">
-                    
+
                     <h2 className="text-3xl font-black text-slate-950 tracking-tight mb-2">Welcome Back</h2>
                     <p className="text-slate-500 font-medium mb-8">Please enter your details to sign in.</p>
 
-                    <form onSubmit={handlePasswordLogin} className="flex flex-col gap-6">
+                    <form onSubmit={handleLogin} className="flex flex-col gap-6">
                         <div>
                             <label className="text-xs font-black text-slate-900 uppercase tracking-widest mb-2 block">Email Address</label>
                             <div className="relative">
                                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><FaEnvelope /></div>
-                                <input 
-                                    type="email" 
-                                    required 
+                                <input
+                                    type="email"
+                                    required
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="name@example.com" 
+                                    placeholder="name@example.com"
                                     className="w-full border border-slate-200 rounded-xl py-3.5 pl-12 pr-4 text-sm font-medium text-slate-900 focus:outline-none focus:border-[#ec1313] focus:ring-1 focus:ring-[#ec1313] transition-all"
                                 />
                             </div>
@@ -126,51 +96,42 @@ function LoginContent() {
                             </div>
                             <div className="relative">
                                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><FaLock /></div>
-                                <input 
-                                    type="password" 
-                                    required 
+                                <input
+                                    type="password"
+                                    required
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    placeholder="••••••••" 
+                                    placeholder="••••••••"
                                     className="w-full border border-slate-200 rounded-xl py-3.5 pl-12 pr-4 text-sm font-medium text-slate-900 focus:outline-none focus:border-[#ec1313] focus:ring-1 focus:ring-[#ec1313] transition-all"
                                 />
                             </div>
                         </div>
 
-                        <button disabled={isLoading} type="submit" className="w-full bg-[#ec1313] hover:bg-[#c40f0f] text-white py-4 rounded-xl font-bold tracking-wide text-lg transition-all duration-300 shadow-xl shadow-red-500/20 active:scale-[0.98] mt-2 cursor-pointer disabled:opacity-50">
+                        <button disabled={isLoading} type="submit" className="w-full bg-[#ec1313] hover:bg-[#c40f0f] text-white py-4 rounded-xl font-bold tracking-wide text-lg transition-all duration-300 shadow-xl shadow-red-500/20 active:scale-[0.98] mt-4 cursor-pointer disabled:opacity-50">
                             {isLoading ? "Signing In..." : "Sign In"}
                         </button>
                     </form>
 
                     <div className="flex items-center gap-4 my-8">
                         <div className="flex-grow h-px bg-slate-200"></div>
-                        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Or Use Magic Link</span>
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Or Continue With</span>
                         <div className="flex-grow h-px bg-slate-200"></div>
                     </div>
 
-                    <form onSubmit={handleMagicLink} className="flex flex-col gap-4 mb-8 bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                        <div className="relative">
-                            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"><FaEnvelope /></div>
-                            <input 
-                                type="email" 
-                                required 
-                                value={magicEmail}
-                                onChange={(e) => setMagicEmail(e.target.value)}
-                                placeholder="Enter email for magic link" 
-                                className="w-full border border-slate-200 rounded-xl py-3.5 pl-12 pr-4 text-sm font-medium text-slate-900 focus:outline-none focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition-all bg-white"
-                            />
-                        </div>
-                        <button disabled={isLoading} type="submit" className="w-full bg-slate-950 hover:bg-slate-800 text-white py-3.5 rounded-xl font-bold tracking-wide transition-all duration-300 shadow-md flex justify-center items-center gap-2 cursor-pointer disabled:opacity-50">
-                            <FaBolt className="text-yellow-400" /> Send Magic Link
-                        </button>
-                    </form>
-
                     <div className="flex gap-4 mb-8">
-                        <button type="button" className="flex-grow flex items-center justify-center gap-3 border border-slate-200 rounded-xl py-3.5 hover:bg-slate-50 transition-colors cursor-pointer text-sm font-bold text-slate-700">
+                        <button
+                            type="button"
+                            onClick={() => signIn("google", { callbackUrl: "/" })}
+                            className="flex-grow flex items-center justify-center gap-3 border border-slate-200 rounded-xl py-3.5 hover:bg-slate-50 transition-colors cursor-pointer text-sm font-bold text-slate-700"
+                        >
                             <FaGoogle className="text-red-500" /> Google
                         </button>
-                        <button type="button" className="flex-grow flex items-center justify-center gap-3 border border-slate-200 rounded-xl py-3.5 hover:bg-slate-50 transition-colors cursor-pointer text-sm font-bold text-slate-700">
-                            <FaApple className="text-slate-900" /> Apple
+                        <button
+                            type="button"
+                            onClick={() => signIn("facebook", { callbackUrl: "/" })}
+                            className="flex-grow flex items-center justify-center gap-3 border border-slate-200 rounded-xl py-3.5 hover:bg-slate-50 transition-colors cursor-pointer text-sm font-bold text-slate-700"
+                        >
+                            <FaFacebook className="text-blue-600" /> Facebook
                         </button>
                     </div>
 
@@ -181,13 +142,5 @@ function LoginContent() {
                 </div>
             </div>
         </div>
-    );
-}
-
-export default function LoginPage() {
-    return (
-        <Suspense fallback={<div className="min-h-screen bg-white"></div>}>
-            <LoginContent />
-        </Suspense>
     );
 }

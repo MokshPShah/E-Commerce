@@ -25,6 +25,9 @@ export interface IProduct extends Document {
       dailyValue: string
     }[]
   }
+  stock: number
+  isDeleted: Boolean
+  deletedAt: Date | null
   createdAt: Date
 }
 
@@ -112,12 +115,20 @@ const ProductSchema = new Schema<IProduct>({
       }
     ]
   },
-
+  stock: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  isDeleted: {type: Boolean, default: false},
+  deletedAt: {type: Date, defaul: null},
   createdAt: {
     type: Date,
     default: Date.now
   }
 })
+
+ProductSchema.index({deletedAt: 1}, {expireAfterSeconds: 2592000})
 
 export default mongoose.models.Product ||
   mongoose.model<IProduct>('Product', ProductSchema)
