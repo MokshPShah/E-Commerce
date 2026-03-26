@@ -48,7 +48,6 @@ export default function RootLayout({
                 },
               }}
             />
-            {/* Let the wrapper handle the Nav and Footer logic! */}
             <LayoutWrapper>
               {children}
             </LayoutWrapper>

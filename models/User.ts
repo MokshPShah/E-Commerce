@@ -9,7 +9,9 @@ export interface IUser extends Document {
   cart: {
     productId: mongoose.Types.ObjectId
     quantity: number
+    flavor?: string
   }[]
+  favorites: mongoose.Types.ObjectId[]
   createdAt: Date
 }
 
@@ -36,9 +38,11 @@ const UserSchema = new Schema<IUser>({
   cart: [
     {
       productId: { type: Schema.Types.ObjectId, ref: 'Product' },
-      quantity: { type: Number, default: 1 }
+      quantity: { type: Number, default: 1 },
+      flavor: { type: String }
     }
   ],
+  favorites: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
   createdAt: {
     type: Date,
     default: Date.now

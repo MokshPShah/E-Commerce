@@ -1,71 +1,76 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { FaStar } from "react-icons/fa";
-import { IoIosCart, IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { toggleFavorite } from "@/store/favoriteSlice";
+import { FaHeart, FaRegHeart } from "react-icons/fa"; // Or whatever icon library you are using
 
-interface ProductProps {
-    image: string,
-    ratings: number,
-    productName: string,
-    productDesc: string,
-    price: string,
-    badge?: string,
-    badgeColor?: string,
+// Ensure your props match your actual Product type
+interface ProductCardProps {
+  product: {
+    _id: string;
+    name: string;
+    price: number;
+    image?: string;
+    images?: string[];
+    slug: string;
+  };
 }
 
-export default function ({ image, ratings, productName, productDesc, price, badge, badgeColor }: ProductProps) {
+export default function ProductCard({ product }: ProductCardProps) {
+  const dispatch = useDispatch();
+  
+  // 1. Read from Redux to see if this specific product is favorited
+  const favorites = useSelector((state: RootState) => state.favorites.items);
+  const isFavorite = favorites.some((fav) => fav._id === product._id);
 
-    const [isFavorite, setIsFavorite] = useState(false);
+  // 2. Handle the click event
+  const handleToggleFavorite = (e: React.MouseEvent) => {
+    e.preventDefault(); // Crucial: Prevents Next.js <Link> from navigating when clicking the heart
+    
+    dispatch(toggleFavorite({
+      _id: product._id,
+      name: product.name,
+      price: product.price,
+      image: product.image || product.images?.[0] || "",
+      slug: product.slug
+    }));
+  };
 
-    const handleFavorite = (e: React.MouseEvent) => {
-        e.preventDefault();
-        setIsFavorite(!isFavorite)
-    }
-    return (
-        <Link href={'/shop'} className="style-card group items-start text-left p-4 gap-2 w-full">
-            <div className="w-full bg-gray-50 rounded-xl aspect-square flex items-center justify-center overflow-hidden mb-2 relative group-hover:bg-gray-100 transition-colors duration-300">
-                {badge && (
-                    <span className={`absolute top-3 left-3 ${badgeColor} text-white text-[10px] font-bold px-2 py-1 rounded tracking-wider z-10`}>{badge}</span>
-                )}
-                <button
-                    onClick={handleFavorite}
-                    className={`absolute bottom-3 right-3 z-20 bg-white p-2 rounded-full shadow-sm transition-all duration-300 
-                        ${isFavorite
-                            ? 'opacity-100 text-[#ec1313]'
-                            : 'opacity-0 group-hover:opacity-100 text-gray-400 hover:text-[#ec1313] hover:shadow-md'
-                        }`}
-                >
-                    {isFavorite ? <IoMdHeart size={18} /> : <IoMdHeartEmpty size={18} />}
-                </button>
-                <Image
-                    src={image}
-                    alt={productName}
-                    width={400}
-                    height={400}
-                    className="object-contain w-[80%] h-[80%] group-hover:scale-110 transition-transform duration-500"
-                    onError={(e) => { e.currentTarget.src = "https://placehold.co/400x400/eeeeee/999999?text=Product+Image" }}></Image>
-            </div>
+  return (
+    <div className="relative group rounded-xl border border-gray-200 bg-white overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+      
+      {/* 3. The Favorite Button */}
+      <button
+        onClick={handleToggleFavorite}
+        className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/80 backdrop-blur-sm shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer"
+        aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+      >
+        {isFavorite ? (
+          <FaHeart className="w-5 h-5 text-red-500 transition-transform active:scale-75" />
+        ) : (
+          <FaRegHeart className="w-5 h-5 text-gray-400 hover:text-red-500 transition-colors active:scale-75" />
+        )}
+      </button>
 
-            <div className="flex items-center gap-1 text-xs font-bold text-gray-500 mt-2">
-                <FaStar className="text-amber-400" size={14} />
-                <span>{ratings}</span>
-                <span className="font-normal text-gray-400 ml-1">(1k+ reviews)</span>
-            </div>
-
-            <div className="w-full">
-                <h3 className="font-bold text-slate-900 text-lg line-clamp-1">{productName}</h3>
-                <p className="text-sm text-gray-500 line-clamp-1 mt-0.5">{productDesc}</p>
-            </div>
-
-            <div className="w-full flex justify-between items-center mt-3">
-                <span className="text-2xl font-extrabold text-slate-900">${price}</span>
-                <button className="bg-[#ec1313] hover:bg-[#c40f0f] text-white px-4 py-2 rounded-md font-bold text-sm transition-all shadow-sm hover:shadow-md flex items-center gap-1">
-                    <IoIosCart size={18} /> Add
-                </button>
-            </div>
-        </Link>
-    )
+      {/* Product Image & Link */}
+      <Link href={`/product/${product.slug}`} className="block cursor-pointer">
+        <div className="aspect-[4/5] bg-gray-100 relative overflow-hidden">
+           {/* Replace with Next.js <Image /> if you are using it */}
+          <img 
+            src={product.image || product.images?.[0] || "/placeholder.png"} 
+            alt={product.name}
+            className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+        
+        <div className="p-4 space-y-2">
+          <h3 className="font-bold text-gray-900 truncate">{product.name}</h3>
+          <p className="font-medium text-gray-900">${product.price.toFixed(2)}</p>
+        </div>
+      </Link>
+      
+    </div>
+  );
 }

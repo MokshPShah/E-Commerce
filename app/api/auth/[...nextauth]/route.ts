@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
         }
         await connectDB()
         
-        // FIX 1: Normalize email to prevent trailing spaces or uppercase issues
+        // Normalize email to prevent trailing spaces or uppercase issues
         const normalizedEmail = credentials.email.trim().toLowerCase();
 
         const user = await User.findOne({ email: normalizedEmail })
@@ -80,12 +80,22 @@ export const authOptions: NextAuthOptions = {
       }
       return true
     },
-    // FIX 2: Only attach data to the token ONCE during the initial login.
-    // This stops NextAuth from hammering your database on every single page load!
-    async jwt ({ token, user }) {
+    async jwt ({ token, user, account }) {
+      // If 'user' exists, it means this is the exact moment the user is logging in
       if (user) {
-        token.id = user.id
-        token.role = (user as any).role || 'user'
+        if (account?.provider === 'google' || account?.provider === 'facebook') {
+           // Fetch the actual MongoDB user to get the real _id instead of the Google/FB ID
+           await connectDB();
+           const dbUser = await User.findOne({ email: user.email });
+           if (dbUser) {
+             token.id = dbUser._id.toString();
+             token.role = dbUser.role || 'user';
+           }
+        } else {
+           // For Credentials, user.id is already the MongoDB _id from the authorize function
+           token.id = user.id;
+           token.role = (user as any).role || 'user';
+        }
       }
       return token
     },

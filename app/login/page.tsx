@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, useSession, getSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaEnvelope, FaLock, FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
@@ -25,8 +25,7 @@ export default function LoginPage() {
         e.preventDefault();
         setIsLoading(true);
         const res = await signIn("credentials", {
-            redirect: true,
-            callbackUrl: '/',
+            redirect: false,
             email,
             password,
         });
@@ -36,6 +35,7 @@ export default function LoginPage() {
             setIsLoading(false);
         } else {
             toast.success("Successfully logged in!");
+            await getSession();
             router.push("/");
             router.refresh();
         }

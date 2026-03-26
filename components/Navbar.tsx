@@ -70,7 +70,6 @@ export default function Navbar() {
                 <div className="flex items-center gap-6">
 
                     <div className="flex items-center gap-4">
-                        {/* Other icons like Cart */}
                         <UserDropdown />
                     </div>
 
