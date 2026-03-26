@@ -158,7 +158,7 @@ export default function EditProductForm({ initialData }: { initialData: any }) {
                             {formData.images.map((imgUrl: string, index: number) => (
                                 <div key={index} className="relative group border border-slate-200 rounded-xl overflow-hidden aspect-square bg-slate-50">
                                     <Image src={imgUrl} alt={`Preview ${index}`} fill className="object-cover" />
-                                    <button type="button" onClick={() => setFormData({ ...formData, images: formData.images.filter((_, i) => i !== index) })} className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer shadow-md">
+                                    <button type="button" onClick={() => setFormData({ ...formData, images: formData.images.filter((_: string, i: number) => i !== index) })} className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer shadow-md">
                                         <FaTrash size={12} />
                                     </button>
                                 </div>
