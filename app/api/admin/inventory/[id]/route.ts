@@ -4,9 +4,9 @@ import Product from '@/models/Product'
 import { getServerSession } from 'next-auth'
 import { NextResponse } from 'next/server'
 
-export async function PUT (
+export async function PUT(
   req: Request,
-  { params }: { params: { id: String } }
+  { params }: { params: Promise<{ id: String }> }
 ) {
   try {
     const session = await getServerSession(authOptions)
@@ -19,6 +19,9 @@ export async function PUT (
       )
     }
 
+    const resolvedParams = await params;
+    const productId = resolvedParams.id;
+
     await connectDB()
 
     const body = await req.json()
@@ -28,7 +31,7 @@ export async function PUT (
     delete body.deletedAt
 
     const updatedProduct = await Product.findByIdAndUpdate(
-      params.id,
+      productId,
       { $set: body },
       { new: true, runValidators: true }
     )
